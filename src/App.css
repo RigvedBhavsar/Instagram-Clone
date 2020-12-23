@@ -23,10 +23,13 @@ h2{
 }
 
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #64b5f6  !important;
-    box-shadow: 0 1px 0 0 #64b5f6  !important;
+    border-bottom: 1px solid black  !important;
+    box-shadow: 0 1px 0 0 black  !important;
 }
-
+.input-field input[type=password]:focus {
+    border-bottom: 1px solid black  !important;
+    box-shadow: 0 1px 0 0 black  !important;
+}
 .gallery{
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +45,9 @@ h2{
     max-width: 500px;
     height: max-content;
     margin: 26px auto;
+}
+#toast-container{
+    top: 55px !important;
+    left: auto !important;
+    right: 5% !important;
 }
