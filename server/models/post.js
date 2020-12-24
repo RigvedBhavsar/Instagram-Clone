@@ -17,6 +17,12 @@ const postSchema = new mongoose.Schema({
         type : String,
         required:true,
     },
+    likes:[
+        {
+            type:ObjectId,
+            ref:"User"
+        }
+    ],
     //here we are building relation between schema
     postedBy :{
         type : ObjectId,
