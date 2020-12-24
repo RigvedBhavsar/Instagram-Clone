@@ -22,13 +22,13 @@ const Home=() =>{
                 data.map(item=>{
                     return(
                         <div className="card home-card" key={item._id}>
-                            <h5>{item.postedBy.name}</h5>
+                            <h5 style={{padding:"10px"}}>{item.postedBy.name}</h5>
                             <div className="card-image">
                             <img src={item.photo} alt="img"/>
                             </div>
                             <div className="card-content">
                                 <i className="material-icons" style={{color:"red"}}>favorite</i>
-                                <h6>{item.title}</h6>
+                                <h6><b>{item.title}</b></h6>
                                 <p>{item.body}</p>
                                 <input type="text" placeholder="Add commnet"/>
                             </div>
