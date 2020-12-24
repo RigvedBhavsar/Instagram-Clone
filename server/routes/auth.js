@@ -32,7 +32,7 @@ router.post('/signup',(req,res)=>{
             })
             user.save()
             .then(user=>{
-                res.json({message :"saved successfully"})
+                res.json({message :"Registered successfully"})
             })
             .catch(err=>{
                 console.log(err);
