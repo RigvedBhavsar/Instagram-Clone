@@ -11,10 +11,6 @@ const Login=() =>{
 
     const userLogin =()=>{
 
-        // if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-        //    return M.toast({html:"Invalid Email",classes:"#c62828 red darken-3"})
-        //  }
-
         fetch("/login",{
             method :"post",
             headers:{
@@ -31,6 +27,8 @@ const Login=() =>{
                 M.toast({html: data.error , classes:"#c62828 red darken-3"})
             }
             else{
+                localStorage.setItem("jwt",data.token);
+                localStorage.setItem("user",JSON.stringify(data.user));
                 M.toast({html : "Successfully Logged in!" , classes:"#43a047 green darken-1"})
                 history.push('/');
             }

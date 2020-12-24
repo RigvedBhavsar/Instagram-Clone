@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
     },
     photo :{
         type : String,
-        default:"No Photo",
+        required:true,
     },
     //here we are building relation between schema
     postedBy :{
