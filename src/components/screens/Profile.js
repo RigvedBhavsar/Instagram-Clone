@@ -3,8 +3,8 @@ import {UserContext} from '../../App'
 
 const Profile =()=> {
 
-    const [mypics , setMypics] = useState([]);
-    const {state , dispatch} = useContext(UserContext);
+    const [mypics,setPics] = useState([])
+    const {state,dispatch} = useContext(UserContext)
 
     useEffect(()=>{
         fetch('/mypost',{
@@ -13,9 +13,10 @@ const Profile =()=> {
             }
         }).then(res=>res.json())
         .then(result=>{
-            setMypics(result.mypost)
+            console.log(result)
+            setPics(result.mypost)
         })
-    },[])
+     },[])
 
 
     return (
@@ -31,9 +32,9 @@ const Profile =()=> {
                 <div>
                     <h4>{state? state.name : "Loading..."}</h4>
                     <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
-                        <h6>40 post</h6>
-                        <h6>1M followers</h6>
-                        <h6>145 following</h6>
+                        <h6>{mypics.length} Posts</h6>
+                        <h6>{state?state.followers.length:"0"} Followers</h6>
+                        <h6>{state?state.following.length : "0"} Following</h6>
                     </div>
                 </div>
             </div>

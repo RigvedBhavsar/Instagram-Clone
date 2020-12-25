@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom'
 const UserProfile =()=> {
 
     const [userProfile , setProfile] = useState(null);
-    const [showfollow , setShowfollow] = useState(true);
+    const [showfollow , setShowFollow] = useState(true);
 
     const {state , dispatch} = useContext(UserContext);
     const {userid} = useParams()
@@ -21,60 +21,62 @@ const UserProfile =()=> {
         })
     },[])
 
-
     const followUser = ()=>{
         fetch('/follow',{
-            method :"put",
+            method:"put",
             headers:{
                 "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
+                "Authorization":"Bearer "+localStorage.getItem('jwt')
             },
             body:JSON.stringify({
                 followId:userid
             })
         }).then(res=>res.json())
         .then(data=>{
-            dispatch({type:"UPDATE",payload :{following : data.following ,followers:data.followers}})
-            localStorage.setItem("user",JSON.stringify(data))
-            setProfile((prevState)=>{
-                return {
-                    ...prevState,
-                    user :{
-                        ...prevState.user,
-                        followers:[...prevState.user.followers,data._id]
-                    }
-                }
-            })
-            setShowfollow(false)
+            console.log(data);
+            dispatch({type:"UPDATE",payload:{following:data.following,followers:data.followers}})
+             localStorage.setItem("user",JSON.stringify(data))
+             setProfile((prevState)=>{
+                 return {
+                     ...prevState,
+                     user:{
+                         ...prevState.user,
+                         followers:[...prevState.user.followers,data._id]
+                        }
+                 }
+             })
+             setShowFollow(false)
         })
     }
-    
-    
     const unfollowUser = ()=>{
         fetch('/unfollow',{
-            method :"put",
+            method:"put",
             headers:{
                 "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
+                "Authorization":"Bearer "+localStorage.getItem('jwt')
             },
             body:JSON.stringify({
                 unfollowId:userid
             })
         }).then(res=>res.json())
         .then(data=>{
-            dispatch({type:"UPDATE",payload :{following : data.following ,followers:data.followers}})
-            localStorage.setItem("user",JSON.stringify(data))
-            setProfile((prevState)=>{
-                const newFollower = prevState.user.followers.filter(item=>item !== data._id)
-                return {
-                    ...prevState,
-                    user :{
-                        ...prevState.user,
-                        followers:newFollower
-                    }
-                }
-            })
+            console.log(data);
+            dispatch({type:"UPDATE",payload:{following:data.following,followers:data.followers}})
+             localStorage.setItem("user",JSON.stringify(data))
+            
+             setProfile((prevState)=>{
+                const newFollower = prevState.user.followers.filter(item=>item != data._id )
+                 return {
+                     ...prevState,
+                     user:{
+                         ...prevState.user,
+                         followers:newFollower
+                        }
+                 }
+             })
+             setShowFollow(true)
         })
+
     }
 
     return (

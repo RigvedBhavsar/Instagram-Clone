@@ -52,3 +52,7 @@ h2{
     left: auto !important;
     right: 5% !important;
 }
+
+.material-icons:hover{
+    cursor: pointer;
+}
